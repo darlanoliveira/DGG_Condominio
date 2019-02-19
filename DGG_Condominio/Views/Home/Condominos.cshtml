@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Condominos";
+}
+<html>
+    <body onload="startTime()">
+        <div>
+            <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
+            <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
+
+            <div style="margin-right: 0.5%" align="right">
+                <input class="btn btn-lg btn-success" type="button" style="width: 10.8%" value="Documentos" onclick="location.href='documentoscond.html'">
+            </div>
+
+            <div class="text text-success" style="margin-top: 5.7%; margin-left: 0.7%">Usuário: </div>
+            <div class="text text-success" style="margin-left: 0.7%"><BR>Nome: </BR></div>
+            <div class="text text-success" style="margin-left: 0.7%"><BR>Data: <a class="text text-success" id="data"></a></BR></div>
+
+            <div style="margin-left: 0.7%">
+                <br>
+                <input class="btn btn-sm btn-danger" type="button" style="width: 11%" value="Sair">
+                <br>
+                <input class="btn btn-sm btn-info" type="button" style="width: 11%; margin-top: 0.5%" value="Configuração" onclick="location.href='configuracaocond.html'">
+            </div>
+
+            <div class="container-fluid" style="margin-top: -26.2%; margin-left: 13%; width: 76%">
+                <div class="text text-success" align="center">
+                    <h1>Condomínio Smille Vila Prudente</h1><br>
+                </div>
+
+                <div class="text text-success">
+                    <h4>Aviso de correio</h4>
+                </div>
+
+                <div class="text text-success" style="margin-left: 52%; margin-top: -3.5%">
+                    <h4>Preferência de retirada de encomenda</h4>
+                </div>
+
+                <hr>
+                <form accept-charset="UTF-8" method="get" action="">
+                    <div class="form-group col-md-6">
+                        <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="align-items: center" nowrap="nowrap" width="10%"></th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Tipo</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Data</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Rastreio</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td id="retirar" name="retirar" nowrap="nowrap"><input class="btn btn-sm btn-info" style="width: 100%" type="submit" value="Retirado"></td>
+                                        <td id="tipo" name="tipo" nowrap="nowrap"></td>
+                                        <td id="data" name="data" nowrap="nowrap"></td>
+                                        <td id="rastreio" name="rastreio" nowrap="nowrap"></td>
+                                        <td id="status" name="status" nowrap="nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+
+                <form accept-charset="UTF-8" method="get" action="">
+                    <div class="form-group col-md-6">
+                        <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="align-items: center" nowrap="nowrap" width="10%"></th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Tipo</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Data</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Rastreio</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td id="retirar" name="retirar" nowrap="nowrap"><input class="btn btn-sm btn-info" style="width: 100%" type="submit" value="Retirado"></td>
+                                        <td id="tipo" name="tipo" nowrap="nowrap"></td>
+                                        <td id="data" name="data" nowrap="nowrap"></td>
+                                        <td id="rastreio" name="rastreio" nowrap="nowrap"></td>
+                                        <td id="status" name="status" nowrap="nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>

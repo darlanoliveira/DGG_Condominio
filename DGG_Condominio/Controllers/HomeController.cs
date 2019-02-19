@@ -34,6 +34,19 @@ namespace DGG_Condominio.Controllers
             return View();
         }
 
+        public IActionResult Condominos()
+        {
+            return View();
+        }
+
+        public IActionResult Moradores(string nome)
+        {
+            var nomeUsuario = "Peter";
+            nome = nomeUsuario;
+            ViewBag.Nome = nome;
+            
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
