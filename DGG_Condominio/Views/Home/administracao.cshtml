@@ -1,62 +1,62 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
 
-        <!-- Nome que será exibido na aba do navegador -->
-        <title>Condomínio Personalizado</title>
+    <!-- Nome que será exibido na aba do navegador -->
+    <title>Condomínio Personalizado</title>
 
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.maskedinput.js"></script> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            function startTime(){
-                var today=new Date();
-                var h=today.getHours();
-                var m=today.getMinutes();
-                var d=today.getDate();
-                var mo=today.getMonth();
-                var y=today.getFullYear();
-                // adiciona um zero na frente de números<10
-                h=checkTime(h);
-                m=checkTime(m);
-                d=checkTime(d);
-                mo=mo+1;
-                mo=checkTime(mo);
-                document.getElementById('hora').innerHTML=h+":"+m;
-                document.getElementById('data').innerHTML=d+"/"+mo+"/"+y;
-                t=setTimeout('startTime()',500);
-            }
-            
-            function checkTime(i){
-                if (i<10){
-                    i="0" + i;
-                }
-                return i;
-            }
-        </script>
-        
-        <script language="JavaScript" type="text/javascript">
-            function InserirData(){
-            var today=new Date();
-            var d=today.getDate();
-            var mo=today.getMonth();
-            var y=today.getFullYear();
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="~/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var d = today.getDate();
+            var mo = today.getMonth();
+            var y = today.getFullYear();
             // adiciona um zero na frente de números<10
-            d=checkTime(d);
-            mo=mo+1;
-            mo=checkTime(mo);
-            var TODAY = d+"/"+mo+"/"+y;
-            var DAYEXP = d+7+"/"+mo+"/"+y;
+            h = checkTime(h);
+            m = checkTime(m);
+            d = checkTime(d);
+            mo = mo + 1;
+            mo = checkTime(mo);
+            document.getElementById('hora').innerHTML = h + ":" + m;
+            document.getElementById('data').innerHTML = d + "/" + mo + "/" + y;
+            t = setTimeout('startTime()', 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+
+    <script language="JavaScript" type="text/javascript">
+        function InserirData() {
+            var today = new Date();
+            var d = today.getDate();
+            var mo = today.getMonth();
+            var y = today.getFullYear();
+            // adiciona um zero na frente de números<10
+            d = checkTime(d);
+            mo = mo + 1;
+            mo = checkTime(mo);
+            var TODAY = d + "/" + mo + "/" + y;
+            var DAYEXP = d + 7 + "/" + mo + "/" + y;
             form1.ultimaatu.value = TODAY;
             form2.dataexpira.value = DAYEXP;
-            }
-        </script>
-    </head>
+        }
+    </script>
+</head>
     
     <script type="text/javascript">
          $(document).ready(function(){
