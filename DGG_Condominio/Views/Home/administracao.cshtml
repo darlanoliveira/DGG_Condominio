@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
+
+        <!-- Nome que será exibido na aba do navegador -->
+        <title>Condomínio Personalizado</title>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.maskedinput.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function startTime(){
+                var today=new Date();
+                var h=today.getHours();
+                var m=today.getMinutes();
+                var d=today.getDate();
+                var mo=today.getMonth();
+                var y=today.getFullYear();
+                // adiciona um zero na frente de números<10
+                h=checkTime(h);
+                m=checkTime(m);
+                d=checkTime(d);
+                mo=mo+1;
+                mo=checkTime(mo);
+                document.getElementById('hora').innerHTML=h+":"+m;
+                document.getElementById('data').innerHTML=d+"/"+mo+"/"+y;
+                t=setTimeout('startTime()',500);
+            }
+            
+            function checkTime(i){
+                if (i<10){
+                    i="0" + i;
+                }
+                return i;
+            }
+        </script>
+        
+        <script language="JavaScript" type="text/javascript">
+            function InserirData(){
+            var today=new Date();
+            var d=today.getDate();
+            var mo=today.getMonth();
+            var y=today.getFullYear();
+            // adiciona um zero na frente de números<10
+            d=checkTime(d);
+            mo=mo+1;
+            mo=checkTime(mo);
+            var TODAY = d+"/"+mo+"/"+y;
+            var DAYEXP = d+7+"/"+mo+"/"+y;
+            form1.ultimaatu.value = TODAY;
+            form2.dataexpira.value = DAYEXP;
+            }
+        </script>
+    </head>
+    
+    <script type="text/javascript">
+         $(document).ready(function(){
+            $("input.data").mask("99/99/9999");
+            $("input.cpf").mask("999.999.999-99");
+            $("input.cep").mask("99.999-999");
+            $("input.cel").mask("(99) 9 9999-9999")
+        });
+    </script>
+
+    <body onload="startTime(); return InserirData(); return DataExpira()">
+        <div>
+            <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
+            <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
+            
+            <div style="margin-right: 0.5%" align="right">
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Página inicial" onclick="location.href='principal.html'"><br><br>
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Moradores" onclick="location.href='moradores.html'"><br><br>
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Documentos" onclick="location.href='documentos.html'">
+            </div>
+            
+            <div class="text text-info" style="margin-top: -2.8%; margin-left: 0.7%">Usuário: </div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Nome: </BR></div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Data: <a class="text text-info" id="data"></a></BR></div>
+            
+            <div style="margin-left: 0.7%">
+                <br>
+                <input class="btn btn-sm btn-danger" type="button" style="width: 11%" value="Sair">
+                <br>
+                <input class="btn btn-sm btn-info" type="button" style="width: 11%; margin-top: 0.5%" value="Configuração" onclick="location.href='configuracao.html'">
+            </div>
+            
+            <div class="container-fluid" style="margin-top: -28.2%; margin-left: 13%; width: 76%">
+                <div class="text text-info" align="center">
+                    <h1>Administração</h1><br>
+                </div>
+            
+                <div class="text text-info">
+                    <h4>Encomendas</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" role="form" method="post" action="portaria">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-2">
+                            <label for="bloco">Bloco</label>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
+                                <datalist id="blocos">
+                                    
+                                </datalist>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="apto">Apto.</label>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
+                                <datalist id="aptos">
+                                   
+                                </datalist>
+                        </div>
+                        
+                         <div class="form-group col-md-2">
+                            <label for="alerta">Alerta de correio</label>
+                            <input list="alertas" name="alerta" id="alerta" class="form-control" placeholder="Tipo de alerta" value="">
+                                <datalist id="alertas">
+                                    
+                                </datalist>
+                        </div> 
+                        
+                        <div class="form-group col-md-2">
+                            <label for="numrastreio">N° Rastreio</label>
+                            <input type="text" name="numrastreio" id="numrastreio" class="form-control" placeholder="Digite o código">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="dataentrada">Data do recebimento</label>
+                            <input type="text" name="dataentrada" id="dataentrada" class="data form-control" placeholder="00/00/0000">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="datasaida">Data da retirada</label>
+                            <input type="text" name="datasaida" id="datasaida" class="data form-control" placeholder="00/00/0000">
+                        </div>
+                        
+                        <input class="btn btn-lg btn-secondary" type="submit" value="Buscar" style="height: 3%; margin-left: 71.1%">
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 1%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%">
+                    </div>
+                </form>
+                
+                <br>
+                <div class="text text-info">
+                    <h4>Pacotes e envelopes - deixar na portaria</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" name="form1" role="form" method="post" action="">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-6">
+                            <label for="nomepac">Nome completo</label>
+                            <input type="text" name="nomepac" id="nomepac" class="form-control" placeholder="Digite o nome completo aqui">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="bloco">Bloco</label>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
+                                <datalist id="blocos">
+                                    
+                                </datalist>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="apto">Apto.</label>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
+                                <datalist id="aptos">
+                                   
+                                </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="ultimaatu">Data</label>
+                            <input type="text" name="ultimaatu" id="ultimaatu" class="data form-control" readonly>
+                        </div>
+                        
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%">
+                    </div>
+                </form>
+                
+                <br>
+                <div class="text text-info">
+                    <h4>Troca e aluguel de vagas</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" role="form" method="post" action="">                    
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-2">
+                            <label for="bloco">Bloco proprietário</label>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
+                                <datalist id="blocos">
+                                    
+                                </datalist>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="apto">Apto. proprietário</label>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
+                                <datalist id="aptos">
+                                    
+                                </datalist>
+                        </div>
+                        
+                         <div class="form-group col-md-2">
+                            <label for="vaga">Vaga prorpietário</label>
+                            <input list="vagas" name="vaga" id="vaga" class="form-control" placeholder="N° da vaga" value="">
+                                <datalist id="vagas">
+                                    
+                                </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label for="observacao">Observação</label>
+                            <input type="text" name="observacao" id="observacao" class="form-control" placeholder="Digite a observação">
+                        </div>
+                        
+                         <div class="form-group col-md-2">
+                            <label for="bloco">Bloco locatário</label>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
+                                <datalist id="blocos">
+                                    
+                                </datalist>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="apto">Apto. locatário</label>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
+                                <datalist id="aptos">
+                                    
+                                </datalist>
+                        </div>
+                        
+                         <div class="form-group col-md-2">
+                            <label for="vaga">Vaga antiga</label>
+                            <input list="vagas" name="vaga" id="vaga" class="form-control" placeholder="N° da vaga" value="">
+                                <datalist id="vagas">
+                                    
+                                </datalist>
+                        </div>
+                        
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.5%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.5%">
+                    </div>
+                </form>
+                
+                <br>
+                <div class="text text-info">
+                    <h4>Quadro de avisos</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" role="form" name="form2" method="post" action="avisos">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-12">
+                            <label for="aviso">Aviso geral</label>
+                            <input type="text" name="aviso" id="aviso" class="form-control" placeholder="Digite o aviso" value="">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="dataexpira">Data expiração</label>
+                            <input type="text" name="dataexpira" id="dataexpira" class="data form-control">
+                        </div>
+                        
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.5%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.5%">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

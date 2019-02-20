@@ -1,189 +1,257 @@
-﻿@{
-    ViewData["Title"] = "Moradores";
-}
+<!DOCTYPE html>
 <html>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("input.data").mask("99/99/9999");
-        $("input.cpf").mask("999.999.999-99");
-        $("input.cep").mask("99.999-999");
-        $("input.tel").mask("(99) 9999-9999");
-        $("input.cel").mask("(99) 9 9999-9999");
-        $("input.placa").mask("aaa-9999");
-    });
-</script>
-<body onload="startTime(); return InserirData()">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
+
+        <!-- Nome que será exibido na aba do navegador -->
+        <title>Condomínio Personalizado</title>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.maskedinput.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function startTime(){
+                var today=new Date();
+                var h=today.getHours();
+                var m=today.getMinutes();
+                var d=today.getDate();
+                var mo=today.getMonth();
+                var y=today.getFullYear();
+                // adiciona um zero na frente de números<10
+                h=checkTime(h);
+                m=checkTime(m);
+                d=checkTime(d);
+                mo=mo+1;
+                mo=checkTime(mo);
+                document.getElementById('hora').innerHTML=h+":"+m;
+                document.getElementById('data').innerHTML=d+"/"+mo+"/"+y;
+                t=setTimeout('startTime()',500);
+            }
+            
+            function checkTime(i){
+                if (i<10){
+                    i="0" + i;
+                }
+                return i;
+            }
+        </script>
+        
+        <script language="JavaScript" type="text/javascript">
+            function InserirData(){
+            var today=new Date();
+            var d=today.getDate();
+            var mo=today.getMonth();
+            var y=today.getFullYear();
+            // adiciona um zero na frente de números<10
+            d=checkTime(d);
+            mo=mo+1;
+            mo=checkTime(mo);
+            var TODAY = d+"/"+mo+"/"+y;
+            form1.ultimaatu.value = TODAY;
+            }
+        </script>
+    </head>
     
-    <div>
-        <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
-        <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
-
-        <div style="margin-right: 0.5%" align="right">
-            <input class="btn btn-lg btn-success" type="button" style="width: 10.8%" value="Página inicial" onclick="location.href='principal.html'"><br><br>
-            <input class="btn btn-lg btn-success" type="button" style="width: 10.8%" value="Administração" onclick="location.href='administracao.html'"><br><br>
-            <input class="btn btn-lg btn-success" type="button" style="width: 10.8%" value="Documentos" onclick="location.href='documentos.html'">
-        </div>
-
-        <div class="text text-success" style="margin-top: -2.8%; margin-left: 0.7%">Usuário: </div>
-        <div class="text text-success" style="margin-left: 0.7%"><BR>Nome: @ViewBag.Nome </BR></div>
-        <div class="text text-success" style="margin-left: 0.7%"><BR>Data: <a class="text text-success" id="data"></a></BR></div>
-
-        <div style="margin-left: 0.7%">
-            <br>
-            <input class="btn btn-sm btn-danger" type="button" style="width: 11%" value="Sair">
-            <br>
-            <input class="btn btn-sm btn-info" type="button" style="width: 11%; margin-top: 0.5%" value="Configuração" onclick="location.href='configuracao.html'">
-        </div>
-
-        <div class="container-fluid" style="margin-top: -28.2%; margin-left: 13%; width: 76%">
-            <div class="text text-success" align="center">
-                <h1>Relação de moradores</h1><br>
+    <script type="text/javascript">
+         $(document).ready(function(){
+            $("input.data").mask("99/99/9999");
+            $("input.cpf").mask("999.999.999-99");
+            $("input.cep").mask("99.999-999");
+            $("input.tel").mask("(99) 9999-9999");
+            $("input.cel").mask("(99) 9 9999-9999");
+            $("input.placa").mask("aaa-9999");
+        });
+    </script>
+    
+    <body onload="startTime(); return InserirData()">
+         <div>
+            <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
+            <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
+            
+            <div style="margin-right: 0.5%" align="right">
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Página inicial" onclick="location.href='principal.html'"><br><br>
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Administração" onclick="location.href='administracao.html'"><br><br>
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Documentos" onclick="location.href='documentos.html'">
             </div>
-
-            <div class="text text-success">
-                <h4>Cadastro e pesquisa</h4>
+             
+            <div class="text text-info" style="margin-top: -2.8%; margin-left: 0.7%">Usuário: </div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Nome: </BR></div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Data: <a class="text text-info" id="data"></a></BR></div>
+            
+            <div style="margin-left: 0.7%">
+                <br>
+                <input class="btn btn-sm btn-danger" type="button" style="width: 11%" value="Sair">
+                <br>
+                <input class="btn btn-sm btn-info" type="button" style="width: 11%; margin-top: 0.5%" value="Configuração" onclick="location.href='configuracao.html'">
             </div>
-
-            <hr>
-            <form accept-charset="UTF-8" name="form1" role="form" method="post" action="portaria">
-                <div class="row" style="margin-left: 1.2%">
-                    <div class="form-group col-md-3">
-                        <label for="nome">Nome completo</label>
-                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome completo">
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="tipo">Tipo</label>
-                        <input list="tipos" name="tipo" id="tipo" class="form-control" placeholder="Selecione aqui" value="">
-                        <datalist id="tipos"></datalist>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="telefone">Telefone</label>
-                        <input type="text" name="telefone" id="telefone" class="tel form-control" placeholder="(00) 0000-0000">
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="celular">Celular</label>
-                        <input type="text" name="celular" id="celular" class="cel form-control" placeholder="(00) 0 0000-0000">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="email">E-mail</label>
-                        <input type="text" name="email" id="email" class="form-control" placeholder="exemplo@exemplo.com.br">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="veiculo">Veículo</label>
-                        <input type="text" name="veiculo" id="veiculo" class="form-control" placeholder="Digite o nome e modelo">
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="placa">Placa</label>
-                        <input type="text" name="placa" id="placa" class="placa form-control" placeholder="XXX-0000">
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="bloco">Bloco</label>
-                        <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco">
-                        <datalist id="blocos"></datalist>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="apto">Apto.</label>
-                        <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto">
-                        <datalist id="aptos"></datalist>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="tag">N° da tag</label>
-                        <input type="text" name="tag" id="tag" class="form-control" placeholder="Digite o número da tag">
-                    </div>
-
-                    <div class="form-group col-md-5">
-                        <label for="propvaga">Proprietário da vaga</label>
-                        <input type="text" name="propvaga" id="propvaga" class="form-control" readonly>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="vaga">N° da vaga</label>
-                        <input list="vagas" name="vaga" id="vaga" class="form-control" placeholder="Escolha a vaga">
-                        <datalist id="vagas"></datalist>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="ultimaatu">Última atualização</label>
-                        <input type="text" name="ultimaatu" id="ultimaatu" class="data form-control" readonly>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="situacao">Situação</label>
-                        <input list="situacoes" name="situacao" id="situacao" class="form-control" placeholder="Escolha a situação">
-                        <datalist id="situacoes"></datalist>
-                    </div>
-
-                    <div class="form-group col-md-12" style="margin-top: -0.5%">
-                        <input class="btn btn-lg btn-primary" type="submit" value="Buscar" style="margin-left: 73.2%">
-                        <input class="btn btn-lg btn-success" type="submit" value="Salvar">
-                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" onclick="window.location.reload()">
-                    </div>
+             
+            <div class="container-fluid" style="margin-top: -28.2%; margin-left: 13%; width: 76%">
+                <div class="text text-info" align="center">
+                    <h1>Relação de moradores</h1><br>
                 </div>
-            </form>
-
-            <br>
-            <div class="text text-success" style="margin-top: -2%">
-                <h4>Tabela de informações</h4>
-            </div>
-
-            <hr>
-            <form accept-charset="UTF-8" role="form" method="get" action="tabelamoradores">
-                <div class="col-md-12" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="align-items: center" nowrap="nowrap"></th>
-                                <th scope="col" style="align-items: center" nowrap="nowrap"></th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Nome completo</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Status</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Situação</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Telefone</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Celular</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">E-mail</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Veículo</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Placa</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Bloco</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Apto.</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">N° tag</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Proprietário vaga</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">N° vaga</th>
-                                <th scope="col" style="text-align: center" nowrap="nowrap">Última atualização</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td id="alterar" name="alterar" nowrap="nowrap"><input class="btn btn-sm btn-warning" type="submit" value="Alterar" style="color: white"></td>
-                                <td id="excluir" name="excluir" nowrap="nowrap"><input class="btn btn-sm btn-danger" type="submit" value="Excluir"></td>
-                                <td id="nome" name="nome" nowrap="nowrap"></td>
-                                <td id="status" name="status" nowrap="nowrap"></td>
-                                <td id="situacao" name="situacao" nowrap="nowrap"></td>
-                                <td id="telefone" name="telefone" nowrap="nowrap"></td>
-                                <td id="celular" name="celular" nowrap="nowrap"></td>
-                                <td id="email" name="email" nowrap="nowrap"></td>
-                                <td id="veiculo" name="veiculo" nowrap="nowrap"></td>
-                                <td id="placa" name="placa" nowrap="nowrap"></td>
-                                <td id="bloco" name="bloco" nowrap="nowrap"></td>
-                                <td id="apto" name="apto" nowrap="nowrap"></td>
-                                <td id="tag" name="tag" nowrap="nowrap"></td>
-                                <td id="propvaga" name="propvaga" nowrap="nowrap"></td>
-                                <td id="vaga" name="vaga" nowrap="nowrap"></td>
-                                <td id="ultimaatu" name="ultimaatu" nowrap="nowrap"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                
+                <div class="text text-info">
+                    <h4>Cadastro e pesquisa</h4>
                 </div>
-            </form>
+                
+                <hr>   
+                <form accept-charset="UTF-8" name="form1" role="form" method="post" action="portaria">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-3">
+                            <label for ="nome">Nome completo</label>
+                            <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome completo">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="tipo">Tipo</label>
+                            <input list="tipos" name="tipo" id="tipo" class="form-control" placeholder="Selecione aqui" value="">
+                                <datalist id="tipos">
+                                    
+                                </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" name="telefone" id="telefone" class="tel form-control" placeholder="(00) 0000-0000">
+                        </div> 
+                        
+                        <div class="form-group col-md-2">
+                            <label for="celular">Celular</label>
+                            <input type="text" name="celular" id="celular" class="cel form-control" placeholder="(00) 0 0000-0000">
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="email">E-mail</label>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="exemplo@exemplo.com.br">
+                        </div>
+                         
+                        <div class="form-group col-md-3">
+                            <label for="veiculo">Veículo</label>
+                            <input type="text" name="veiculo" id="veiculo" class="form-control" placeholder="Digite o nome e modelo">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="placa">Placa</label>
+                            <input type="text" name="placa" id="placa" class="placa form-control" placeholder="XXX-0000">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="bloco">Bloco</label>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco">
+                                <datalist id="blocos">
+                                    
+                                </datalist>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="apto">Apto.</label>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto">
+                                <datalist id="aptos">
+                                    
+                                </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="tag">N° da tag</label>
+                            <input type="text" name="tag" id="tag" class="form-control" placeholder="Digite o número da tag">
+                        </div>
+                        
+                        <div class="form-group col-md-5">
+                            <label for="propvaga">Proprietário da vaga</label>
+                            <input type="text" name="propvaga" id="propvaga" class="form-control" readonly>
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="vaga">N° da vaga</label>
+                            <input list="vagas" name="vaga" id="vaga" class="form-control" placeholder="Escolha a vaga">
+                            <datalist id="vagas">
+                                
+                            </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="ultimaatu">Última atualização</label>
+                            <input type="text" name="ultimaatu" id="ultimaatu" class="data form-control" readonly>
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="situacao">Situação</label>
+                            <input list="situacoes" name="situacao" id="situacao" class="form-control" placeholder="Escolha a situação">
+                            <datalist id="situacoes">
+                                                                
+                            </datalist>
+                        </div>
+                        
+                        <div class="form-group col-md-12" style="margin-top: -0.5%">
+                            <input class="btn btn-lg btn-secondary" type="submit" value="Buscar" style="margin-left: 73.2%">
+                            <input class="btn btn-lg btn-info" type="submit" value="Salvar">
+                            <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" onclick="window.location.reload()">
+                        </div>
+                    </div>
+                </form>
+                
+                <br>                
+                <div class="text text-info" style="margin-top: -2%">
+                    <h4>Tabela de informações</h4>
+                </div>
+                
+                <hr>                
+                <form accept-charset="UTF-8" role="form" method="get" action="tabelamoradores">                    
+                    <div class="col-md-12" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="align-items: center" nowrap="nowrap"></th>
+                                    <th scope="col" style="align-items: center" nowrap="nowrap"></th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Nome completo</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Status</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Situação</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Telefone</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Celular</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">E-mail</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Veículo</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Placa</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Bloco</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Apto.</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">N° tag</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Proprietário vaga</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">N° vaga</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Data cadastro vaga</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">N° nova vaga</th>
+                                    <th scope="col" style="text-align: center" nowrap="nowrap">Última atualização</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr>
+                                    <td id="alterar" name="alterar" nowrap="nowrap"><input class="btn btn-sm btn-warning" type="submit" value="Alterar" style="color: white"></td>
+                                    <td id="excluir" name="excluir" nowrap="nowrap"><input class="btn btn-sm btn-danger" type="submit" value="Excluir"></td>
+                                    <td id="nome" name="nome" nowrap="nowrap"></td>
+                                    <td id="status" name="status" nowrap="nowrap"></td>
+                                    <td id="situacao" name="situacao" nowrap="nowrap"></td>
+                                    <td id="telefone" name="telefone" nowrap="nowrap"></td>
+                                    <td id="celular" name="celular" nowrap="nowrap"></td>
+                                    <td id="email" name="email" nowrap="nowrap"></td>
+                                    <td id="veiculo" name="veiculo" nowrap="nowrap"></td>
+                                    <td id="placa" name="placa" nowrap="nowrap"></td>
+                                    <td id="bloco" name="bloco" nowrap="nowrap"></td>
+                                    <td id="apto" name="apto" nowrap="nowrap"></td>
+                                    <td id="tag" name="tag" nowrap="nowrap"></td>
+                                    <td id="propvaga" name="propvaga" nowrap="nowrap"></td>
+                                    <td id="vaga" name="vaga" nowrap="nowrap"></td>
+                                    <td id="datacadvaga" name="datacadvaga" nowrap="nowrap"></td>
+                                    <td id="novavaga" name="novavaga" nowrap="nowrap"></td>
+                                    <td id="ultimaatu" name="ultimaatu" nowrap="nowrap"></td>
+                                </tr>
+                            </tbody>
+                        </table>                        
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
