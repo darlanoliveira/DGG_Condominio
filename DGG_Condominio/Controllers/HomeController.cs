@@ -77,17 +77,42 @@ namespace DGG_Condominio.Controllers
 
 
 
-        public IActionResult Privacy()
+        public IActionResult administracao()
         {
             return View();
         }
 
-        public IActionResult Condominos()
+        public IActionResult configuracao()
+        {
+            return View();
+        }
+        
+        public IActionResult configuracaocond()
+        {
+            return View();
+        }
+        
+        public IActionResult documentos()
+        {
+            return View();
+        }
+        
+        public IActionResult documentoscond()
+        {
+            return View();
+        }
+        
+        public IActionResult principal()
         {
             return View();
         }
 
-        public IActionResult Moradores(string nome)
+        public IActionResult condominos()
+        {
+            return View();
+        }
+
+        public IActionResult moradores(string nome)
         {
             var nomeUsuario = "Peter";
             nome = nomeUsuario;
