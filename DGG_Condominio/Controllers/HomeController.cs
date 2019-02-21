@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DGG_Condominio.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace DGG_Condominio.Controllers
 {
@@ -28,6 +31,51 @@ namespace DGG_Condominio.Controllers
 
             return View();
         }
+
+        public IActionResult Login(string email = "", string senha = "")
+        {
+            if (senha == "123")
+            {
+                return RedirectToAction("Condominos");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logar(LoginViewModel vm)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                var isValid = (vm.Email == "usuario@usuario.com" && vm.Senha == "123");
+                // var isValid = HomeModel.RecuperarUsuario(vm.Email, vm.Senha);
+                if (!isValid)
+                {
+                    ModelState.AddModelError("", "Usuário ou senha inválido");
+                    return RedirectToAction("Login");
+                }
+
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, vm.Email));
+                identity.AddClaim(new Claim(ClaimTypes.Name, vm.Email));
+                var principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = vm.RememberMe });
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                ModelState.AddModelError("", "username or password is blank");
+                return RedirectToAction("Login");
+            }
+
+
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {
