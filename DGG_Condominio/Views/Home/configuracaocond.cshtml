@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Nome que será exibido na aba do navegador -->
+    <title>Condomínio Personalizado</title>
+
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="~/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var d = today.getDate();
+            var mo = today.getMonth();
+            var y = today.getFullYear();
+            // adiciona um zero na frente de números<10
+            h = checkTime(h);
+            m = checkTime(m);
+            d = checkTime(d);
+            mo = mo + 1;
+            mo = checkTime(mo);
+            document.getElementById('hora').innerHTML = h + ":" + m;
+            document.getElementById('data').innerHTML = d + "/" + mo + "/" + y;
+            t = setTimeout('startTime()', 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+</head>
+    
+    <body onload="startTime()">
+         <div>
+            <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
+            <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
+            
+             <div style="margin-right: 0.5%" align="right">
+                <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Página inicial" onclick="location.href='condominos.cshtml'">
+            </div>
+             
+            <div class="text text-info" style="margin-top: 5.7%; margin-left: 0.7%">Usuário: </div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Nome: </BR></div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Data: <a class="text text-info" id="data"></a></BR></div>
+           
+             <div style="margin-left: 0.7%">
+                <br>
+                <input class="btn btn-sm btn-danger" type="button" style="width: 11%" value="Sair">
+            </div>
+             
+            <div class="container-fluid" style="margin-top: -23.7%; margin-left: 13%; width: 76%">
+                <div class="text text-info" align="center">
+                    <h1>Configuração</h1><br>
+                </div>
+                
+                <div class="text text-info">
+                    <h4>Trocar a senha</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" role="form" method="post" action="">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-4">
+                            <label for="senhaatu">Senha atual</label>
+                            <input type="password" name="senhaatu" id="senhaatu" class="form-control" placeholder="Digite a senha atual aqui">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="novasenha">Nova senha</label>
+                            <input type="password" name="novasenha" id="novasenha" class="form-control" placeholder="Digite a nova senha aqui">
+                        </div>
+                        
+                         <div class="form-group col-md-4">
+                            <label for="repnovasenha">Repita a nova senha</label>
+                            <input type="password" name="repnovasenha" id="repnovasenha" class="form-control" placeholder="Repita a nova senha aqui">
+                        </div> 
+                        
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%">
+                    </div>
+                </form>
+                
+                <div class="text text-info">
+                    <h4>Upload da foto</h4>
+                </div>
+                
+                <hr>
+                <form accept-charset="UTF-8" name="form1" role="form" method="post" action="">
+                    <div class="row" style="margin-left: 1.2%">
+                        <div class="form-group col-md-6">
+                            <label for="arqfoto">Escolha o arquivo da foto</label>
+                            <input type="file" name="arqfoto" id="arqfoto" class="form-control-file btn btn-sm btn-outline-secondary">
+                        </div>
+                        
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 71.3%; margin-top: -5.6%">
+                        <input class="btn btn-lg btn-warning" type="submit" value="Excluir" style="height: 3%; margin-left: 1%; margin-top: -5.6%; color: white">                        
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.6%">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
