@@ -13,6 +13,7 @@ namespace DGG_Condominio.Controllers
 {
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -43,10 +44,10 @@ namespace DGG_Condominio.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Logar(LoginViewModel vm)
+        public async Task<IActionResult> Logar(LoginViewModelo vm)
         {
 
-
+            
             if (ModelState.IsValid)
             {
                 var isValid = (vm.Email == "usuario@usuario.com" && vm.Senha == "123");
@@ -109,6 +110,9 @@ namespace DGG_Condominio.Controllers
 
         public IActionResult condominos()
         {
+            UsuariosModelos usuarios = new UsuariosModelos();
+
+            var usuarioCodigo = usuarios.USU_COD;
             var nomeUsuario = "Peter"; //No banco MOR_NOME
             ViewBag.Nome = nomeUsuario;
             ViewBag.AlteraNome = 1;
@@ -124,7 +128,7 @@ namespace DGG_Condominio.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModelo { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

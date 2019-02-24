@@ -2,7 +2,7 @@ using System;
 
 namespace DGG_Condominio.Models
 {
-    public class ErrorViewModel
+    public class ErrorViewModelo
     {
         public string RequestId { get; set; }
 

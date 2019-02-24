@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DGG_Condominio.Models
 {
-    public class LoginViewModel
+    public class LoginViewModelo
     {
 
         [Key]
