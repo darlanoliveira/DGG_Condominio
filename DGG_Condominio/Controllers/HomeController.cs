@@ -109,14 +109,15 @@ namespace DGG_Condominio.Controllers
 
         public IActionResult condominos()
         {
+            var nomeUsuario = "Peter"; //No banco MOR_NOME
+            ViewBag.Nome = nomeUsuario;
+            ViewBag.AlteraNome = 1;
             return View();
         }
 
         public IActionResult moradores(string nome)
         {
-            var nomeUsuario = "Peter";
-            nome = nomeUsuario;
-            ViewBag.Nome = nome;
+            
             
             return View();
         }

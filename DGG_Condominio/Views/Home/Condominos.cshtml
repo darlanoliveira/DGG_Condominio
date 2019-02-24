@@ -1,5 +1,6 @@
 ﻿@{ 
     ViewData["Title"] = "Condomínio Personalizado";
+
 }
 
 <!DOCTYPE html>
@@ -61,8 +62,8 @@
                 <input class="btn btn-lg btn-info" type="button" style="width: 10.8%" value="Documentos" onclick="location.href='documentoscond.cshtml'">
             </div>
              
-            <div class="text text-info" style="margin-top: 5.7%; margin-left: 0.7%">Usuário: </div>
-            <div class="text text-info" style="margin-left: 0.7%"><BR>Nome: </BR></div>
+            <div class="text text-info" style="margin-top: 5.7%; margin-left: 0.7%">Usuário: @ViewBag.Usuario </div>
+            <div class="text text-info" style="margin-left: 0.7%"><BR>Nome: @ViewBag.Nome  </BR></div>
             <div class="text text-info" style="margin-left: 0.7%"><BR>Data: <a class="text text-info" id="data"></a></BR></div>
              
             <div style="margin-left: 0.7%">
@@ -186,9 +187,10 @@
                  <form accept-charset="UTF-8" method="post" action="">
                     <div class="form-group col-md-6" style="margin-left: 51%; margin-top: -13.2%">
                         <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Digite o título da mensagem aqui">
-                        <textarea name="mensagem" id="mensagem" class="form-control" rows="3" style="margin-top: 1.5%" placeholder="Digite suas sugestões, dúvidas ou críticas aqui"></textarea><br><br>
-                        <input type="submit" name="enviar" id="enviar" class="btn btn-lg btn-info"  style="margin-top: -10%; margin-left: 61.2%" value="Enviar">
-                        <input type="reset" name="cancelar" id="cancelar" class="btn btn-lg btn-danger"  style="margin-top: -10%; margin-left: 1%" value="Cancelar">
+                        <textarea name="mensagem" id="mensagem" class="form-control" rows="3" style="margin-top: 1.5%" placeholder="Digite suas sugestões, dúvidas ou críticas aqui"></textarea><br><br>                        
+                        <input type="submit" name="enviar" id="enviar" class="btn btn-lg btn-info" style="margin-top: -10%; margin-left: 61.2%" value="Enviar">
+                        <input type="reset" name="cancelar" id="cancelar" class="btn btn-lg btn-danger" style="margin-top: -10%; margin-left: 1%" value="Cancelar">
+                                                                                                                                                                                       
                     </div>
                 </form>
                 
