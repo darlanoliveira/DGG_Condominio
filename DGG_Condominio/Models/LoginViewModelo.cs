@@ -26,5 +26,8 @@ namespace DGG_Condominio.Models
         [Display(Name = "Lembre-me")]
         public bool RememberMe { get; set; }
         public ClaimsIdentity Username { get; internal set; }
+
+
     }
+
 }

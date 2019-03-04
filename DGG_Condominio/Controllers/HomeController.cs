@@ -8,6 +8,7 @@ using DGG_Condominio.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using DGG_Condominio.Modulos;
 
 namespace DGG_Condominio.Controllers
 {
@@ -40,6 +41,11 @@ namespace DGG_Condominio.Controllers
                 return RedirectToAction("Condominos");
             }
 
+            //LoginViewModelo vm = new LoginViewModelo();
+            //vm.Email = email;
+            //vm.Senha = senha;
+            //Logar(vm);
+
             return View();
         }
 
@@ -50,6 +56,7 @@ namespace DGG_Condominio.Controllers
             
             if (ModelState.IsValid)
             {
+                var email = LoginDAO.BuscaUsuario(vm.Email);
                 var isValid = (vm.Email == "usuario@usuario.com" && vm.Senha == "123");
                 // var isValid = HomeModel.RecuperarUsuario(vm.Email, vm.Senha);
                 if (!isValid)
@@ -63,7 +70,9 @@ namespace DGG_Condominio.Controllers
                 identity.AddClaim(new Claim(ClaimTypes.Name, vm.Email));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = vm.RememberMe });
-                return RedirectToAction("Index");
+
+
+                return RedirectToAction("Condominos");
 
             }
             else
@@ -72,7 +81,7 @@ namespace DGG_Condominio.Controllers
                 return RedirectToAction("Login");
             }
 
-
+           
             return View();
         }
 
