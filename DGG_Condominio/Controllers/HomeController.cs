@@ -36,35 +36,33 @@ namespace DGG_Condominio.Controllers
 
         public IActionResult Login(string email = "", string senha = "")
         {
-            if (senha == "123")
+            LoginViewModelo vm = new LoginViewModelo();
+            vm.Email = email;
+            vm.Senha = senha;
+            var usuario = new List<UsuariosModelos>();
+
+
+            usuario = HomeModel.BuscaUsuario(vm.Email, vm.Senha);
+            if (usuario != null)
             {
+              
+                Logar(vm);
+              
                 return RedirectToAction("Condominos");
             }
-
-            //LoginViewModelo vm = new LoginViewModelo();
-            //vm.Email = email;
-            //vm.Senha = senha;
-            //Logar(vm);
-
-            return View();
+            else
+            {
+                return View();
+            }
+     
         }
 
         [HttpPost]
         public async Task<IActionResult> Logar(LoginViewModelo vm)
-        {
-
-            
+        {       
             if (ModelState.IsValid)
             {
-                var email = LoginDAO.BuscaUsuario(vm.Email);
-                var isValid = (vm.Email == "usuario@usuario.com" && vm.Senha == "123");
-                // var isValid = HomeModel.RecuperarUsuario(vm.Email, vm.Senha);
-                if (!isValid)
-                {
-                    ModelState.AddModelError("", "Usuário ou senha inválido");
-                    return RedirectToAction("Login");
-                }
-
+                
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, vm.Email));
                 identity.AddClaim(new Claim(ClaimTypes.Name, vm.Email));
@@ -82,7 +80,7 @@ namespace DGG_Condominio.Controllers
             }
 
            
-            return View();
+           
         }
 
 

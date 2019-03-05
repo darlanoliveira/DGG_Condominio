@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace DGG_Condominio.Models
 {
     public class ConfiguracaoModelo
     {
+        [Key]
         public int CONFIG_COD { get; internal set; }
         public string CONFIG_CONDOMINIO { get; internal set; }
         public string CONFIG_BLOCO { get; internal set; }
