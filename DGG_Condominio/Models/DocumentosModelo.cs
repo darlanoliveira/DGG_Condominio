@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DGG_Condominio.Models
 {
-    public class DocumentosModeo
+    public class DocumentosModelo
     {
         [key]
         public int DOC_COD { get; internal set; }

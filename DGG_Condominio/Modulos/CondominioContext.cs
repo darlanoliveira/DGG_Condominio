@@ -6,8 +6,18 @@ using System.Data.Entity;
 namespace DGG_Condominio.Modulos
 {
     public class CondominioContext : Microsoft.EntityFrameworkCore.DbContext
-    {
-        public System.Data.Entity.DbSet<UsuariosModelos> Usuarios { get; set; }
+    { 
+        //classe bean
+        public System.Data.Entity.DbSet<UsuariosModelos> usuarios { get; set; }
+        public System.Data.Entity.DbSet<ConfiguracaoModelo> configuracao { get; set; }
+        public System.Data.Entity.DbSet<AvisosModelo> avisos { get; set; }
+        public System.Data.Entity.DbSet<DocumentosModelo> documentos { get; set; }
+        public System.Data.Entity.DbSet<EncomendasModelo> encomendas { get; set; }
+        public System.Data.Entity.DbSet<FuncionariosModelo> funcionarios { get; set; }
+        public System.Data.Entity.DbSet<MensagensModelo> mensagens { get; set; }
+        public System.Data.Entity.DbSet<MoradoresModelo> moradores { get; set; }
+        public System.Data.Entity.DbSet<PortariaModelo> portaria { get; set; }
+        public System.Data.Entity.DbSet<ReservasModelo> reservas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

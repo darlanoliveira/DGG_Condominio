@@ -14,7 +14,7 @@ namespace DGG_Condominio.Modulos
 
         public static dynamic BuscaUsuario (string email)        
         {
-            IList < UsuariosModelos > usuario = context.Usuarios.Where(u => u.USU_LOGIN == email).ToList();
+            IList < UsuariosModelos > usuario = context.usuarios.Where(u => u.USU_LOGIN == email).ToList();
             return usuario;
         }
 
