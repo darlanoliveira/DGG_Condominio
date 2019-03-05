@@ -8,7 +8,7 @@ namespace DGG_Condominio.Modulos
 {
     public class LoginDAO
     {
-        private CondominioContext context;
+        private static CondominioContext context;
 
       
 
