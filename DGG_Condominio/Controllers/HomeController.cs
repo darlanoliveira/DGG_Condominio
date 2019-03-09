@@ -45,7 +45,6 @@ namespace DGG_Condominio.Controllers
             usuario = HomeModel.BuscaUsuario(vm.Email, vm.Senha);
             if (usuario != null)
             {
-              
                 Logar(vm);
               
                 return RedirectToAction("Condominos");
@@ -117,12 +116,15 @@ namespace DGG_Condominio.Controllers
 
         public IActionResult condominos()
         {
-            UsuariosModelos usuarios = new UsuariosModelos();
+            var usuario = new List<UsuariosModelos>();
+            usuario = HomeModel.AtualUsuario();
 
-            var usuarioCodigo = usuarios.USU_COD;
-            var nomeUsuario = "Peter"; //No banco MOR_NOME
-            ViewBag.Nome = nomeUsuario;
-            ViewBag.AlteraNome = 1;
+            foreach (var item in usuario)
+            {
+                ViewBag.Nome = item.USU_NOME;
+            }
+            
+            
             return View();
         }
 
