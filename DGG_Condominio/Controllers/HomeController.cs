@@ -86,7 +86,17 @@ namespace DGG_Condominio.Controllers
 
         public IActionResult administracao()
         {
+
+
             return View();
+        }
+
+        public IActionResult SalvarEncomendas(string bloco, string apto,int tipo,string rastreio,DateTime recebimento,DateTime retirada)
+        {
+
+
+
+            return RedirectToAction("administracao");
         }
 
         public IActionResult configuracao()
