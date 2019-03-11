@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace DGG_Condominio.Models
 {
     public class MensagensModelo
     {
-        [key]
+        [Key]
         public int MSG_COD { get; internal set; }
         public int MSG_USU_COD { get; internal set; }
         public int MSG_USU_CAD { get; internal set; }

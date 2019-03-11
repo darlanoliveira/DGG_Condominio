@@ -128,6 +128,20 @@ namespace DGG_Condominio.Controllers
             return View();
         }
 
+        public IActionResult SalvarMsg(string titulo, string mensagem)
+        {
+            var usuario = HomeModel.AtualUsuario();
+            var usu_cod = 0;
+            foreach (var item in usuario)
+            {
+                usu_cod = item.USU_COD;
+            }
+            
+            HomeModel.SalvarMensagem(titulo, mensagem, usu_cod);
+
+            return RedirectToAction("condominos");
+        }
+
         public IActionResult moradores(string nome)
         {
             
@@ -139,5 +153,8 @@ namespace DGG_Condominio.Controllers
         {
             return View(new ErrorViewModelo { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
     }
 }

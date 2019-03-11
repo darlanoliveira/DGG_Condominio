@@ -46,5 +46,33 @@ namespace DGG_Condominio.Modulos
 
             }
         }
+
+
+
+
+    //---------Métodos da tela "Condominios"------------//
+    public static string  SalvarMensagem(string titulo, string texto, int usu_cad)
+        {
+
+            MensagensModelo msg = new MensagensModelo();
+            msg.MSG_USU_COD = usu_cad;
+            msg.MSG_USU_CAD = usu_cad;
+            msg.MSG_TITULO = titulo;
+            msg.MSG_TEXTO = texto;
+            msg.MSG_STATUS = "Pendente";
+            msg.MSG_DATA = DateTime.Now;
+            msg.MSG_APTO = "0";
+            msg.MSG_BLOCO = "0";
+
+            using (var repo = new CondominioContext())
+            {
+                repo.mensagens.Add(msg);
+                repo.SaveChanges();
+            }
+
+
+                return null;
+        }
+
     }
 }

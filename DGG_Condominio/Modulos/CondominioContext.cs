@@ -11,12 +11,12 @@ namespace DGG_Condominio.Modulos
         public DbSet<AvisosModelo> avisos { get; set; }
         public DbSet<ConfiguracaoModelo> configuracao { get; set; }
         public DbSet<MensagensModelo> mensagens { get; set; }
-        // public DbSet<DocumentosModelo> documentos { get; set; }
-        // public DbSet<EncomendasModelo> encomendas { get; set; }
-        // public DbSet<FuncionariosModelo> funcionarios { get; set; }
-        // public DbSet<MoradoresModelo> moradores { get; set; }
-        // public DbSet<PortariaModelo> portaria { get; set; }
-        // public DbSet<ReservasModelo> reservas { get; set; }
+        public DbSet<DocumentosModelo> documentos { get; set; }
+        public DbSet<EncomendasModelo> encomendas { get; set; }
+        public DbSet<FuncionariosModelo> funcionarios { get; set; }
+        public DbSet<MoradoresModelo> moradores { get; set; }
+        public DbSet<PortariaModelo> portaria { get; set; }
+        public DbSet<ReservasModelo> reservas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

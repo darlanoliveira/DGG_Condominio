@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace DGG_Condominio.Models
 {
     public class EncomendasModelo
     {
-        [key]
+        [Key]
         public int ENC_COD { get; internal set; }
         public int ENC_USU_COD { get; internal set; }
         public int ENC_USU_CAD { get; internal set; }
