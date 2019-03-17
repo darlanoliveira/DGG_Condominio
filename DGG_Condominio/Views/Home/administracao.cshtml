@@ -67,7 +67,8 @@
         });
     </script>
 
-    <body onload="startTime(); return InserirData(); return DataExpira()">
+    <body onload="startTime(); return InserirData(); return DataExpira();">
+    
         <div>
             <img class="media-object" src="~/images/logo.png" width="34%" height="210px" id="imgLogo" style="margin-top: 0.7%; margin-left: 0.7%">
             <div class="text text-danger" id="hora" style="font-size: 300%; margin-top: -13%;margin-right: 2%" align="right"></div>
@@ -99,50 +100,45 @@
                 </div>
                 
                 <hr>
-                <form accept-charset="UTF-8" role="form" method="post" action="portaria">
+                <form accept-charset="UTF-8" role="form" method="post" action="/Home/SalvarBuscarEncomendas">
                     <div class="row" style="margin-left: 1.2%">
                         <div class="form-group col-md-2">
                             <label for="bloco">Bloco</label>
-                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
-                                <datalist id="blocos">
-                                    
-                                </datalist>
+                            <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="@ViewBag.Bloco">
+                            <datalist id="blocos"></datalist>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="apto">Apto.</label>
-                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
-                                <datalist id="aptos">
-                                   
-                                </datalist>
+                            <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="@ViewBag.Apto">
+                            <datalist id="aptos"></datalist>
                         </div>
-                        
-                         <div class="form-group col-md-2">
+
+                        <div class="form-group col-md-2">
                             <label for="alerta">Alerta de correio</label>
-                            <input list="alertas" name="alerta" id="alerta" class="form-control" placeholder="Tipo de alerta" value="">
-                                <datalist id="alertas">
-                                    
-                                </datalist>
-                        </div> 
-                        
+                            <input list="alertas" name="tipo" id="alerta" class="form-control" placeholder="Tipo de alerta" value="@ViewBag.Tipo">
+                            <datalist id="alertas"></datalist>
+                        </div>
+
                         <div class="form-group col-md-2">
                             <label for="numrastreio">N° Rastreio</label>
-                            <input type="text" name="numrastreio" id="numrastreio" class="form-control" placeholder="Digite o código">
+                            <input type="text" name="rastreio" id="numrastreio" class="form-control" placeholder="Digite o código" value="@ViewBag.Rastreio">
                         </div>
-                        
+
                         <div class="form-group col-md-2">
                             <label for="dataentrada">Data do recebimento</label>
-                            <input type="text" name="dataentrada" id="dataentrada" class="data form-control" placeholder="00/00/0000">
+                            <input type="text" name="recebimento" id="dataentrada" class="data form-control" placeholder="00/00/0000" value="@ViewBag.Recebimento">
                         </div>
-                        
+
                         <div class="form-group col-md-2">
                             <label for="datasaida">Data da retirada</label>
-                            <input type="text" name="datasaida" id="datasaida" class="data form-control" placeholder="00/00/0000">
+                            <input type="text" name="retirada" id="datasaida" class="data form-control" placeholder="00/00/0000" value="@ViewBag.Retirada">
                         </div>
-                        
-                        <input class="btn btn-lg btn-secondary" type="submit" value="Buscar" style="height: 3%; margin-left: 71.1%">
-                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 1%">
+
+                        <input class="btn btn-lg btn-secondary" type="submit" value="Buscar" name="botao" style="height: 3%; margin-left: 71.1%">
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" name="botao" style="height: 3%; margin-left: 1%">
                         <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%">
+                        <span ><b>@ViewBag.MsgEnc</b></span>
                     </div>
                 </form>
                 
@@ -152,37 +148,35 @@
                 </div>
                 
                 <hr>
-                <form accept-charset="UTF-8" name="form1" role="form" method="post" action="">
+                <form accept-charset="UTF-8" name="form1" role="form" method="post" action="/Home/SalvarEnvPac">
                     <div class="row" style="margin-left: 1.2%">
                         <div class="form-group col-md-6">
                             <label for="nomepac">Nome completo</label>
                             <input type="text" name="nomepac" id="nomepac" class="form-control" placeholder="Digite o nome completo aqui">
                         </div>
-                        
+
                         <div class="form-group col-md-2">
                             <label for="bloco">Bloco</label>
                             <input list="blocos" name="bloco" id="bloco" class="form-control" placeholder="N° bloco" value="">
-                                <datalist id="blocos">
-                                    
-                                </datalist>
+                            <datalist id="blocos"></datalist>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="apto">Apto.</label>
                             <input list="aptos" name="apto" id="apto" class="form-control" placeholder="N° apto" value="">
-                                <datalist id="aptos">
-                                   
-                                </datalist>
+                            <datalist id="aptos"></datalist>
                         </div>
-                        
+
                         <div class="form-group col-md-2">
                             <label for="ultimaatu">Data</label>
                             <input type="text" name="ultimaatu" id="ultimaatu" class="data form-control" readonly>
                         </div>
-                        
+
                         <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%">
                         <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%">
+                        <span><b>@ViewBag.MsgEnv</b></span>
                     </div>
+                    
                 </form>
                 
                 <br>
@@ -257,7 +251,7 @@
                 </div>
                 
                 <hr>
-                <form accept-charset="UTF-8" role="form" name="form2" method="post" action="avisos">
+                <form accept-charset="UTF-8" role="form" name="form2" method="post" action="/Home/SalvarAviso">
                     <div class="row" style="margin-left: 1.2%">
                         <div class="form-group col-md-12">
                             <label for="aviso">Aviso geral</label>
@@ -271,9 +265,11 @@
                         
                         <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.5%">
                         <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.5%">
+                        <span><b>@ViewBag.MsgAvisos</b></span>
                     </div>
                 </form>
             </div>
         </div>
     </body>
 </html>
+

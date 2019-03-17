@@ -53,7 +53,8 @@ namespace DGG_Condominio.Controllers
             {
                 return View();
             }
-     
+
+            
         }
 
         [HttpPost]
@@ -84,20 +85,101 @@ namespace DGG_Condominio.Controllers
 
 
 
-        public IActionResult administracao()
+        public IActionResult administracao(string msgenc = "", string bloco = "", string apto = "", int tipo = 0, string rastreio = "", DateTime recebimento = default(DateTime), DateTime retirada = default(DateTime),string msgenv = "",string msgavisos = "")
         {
 
 
+            //-----------------------Encomendas--------------------------------//
+            //ViewBag onde aparece as mensagens da parte de encomendas.
+            ViewBag.MsgEnc = msgenc;
+
+            //ViewBags que guardarão os valores dos campos de encomenda
+            ViewBag.Bloco = bloco;
+            ViewBag.Apto = apto;
+            ViewBag.Tipo = tipo;
+            ViewBag.Rastreio = rastreio;
+            if(recebimento == default(DateTime))
+            {
+                ViewBag.Recebimento = DateTime.Now;
+            }
+            else
+            {
+                ViewBag.Recebimento = recebimento;
+            }        
+            ViewBag.Retirada = retirada;
+            //-----------------------------------------------------------------//
+
+            //-------------Pacotes e Envelopes---------------------------------//
+            ViewBag.MsgEnv = msgenv;
+
+            //---------------Aluguel Vagas --------------------------------//
+
+            //--------------Quadro de Avisos------------------------------//
+            ViewBag.MsgAvisos = msgavisos;
+
+
+
+
+                   
             return View();
         }
 
-        public IActionResult SalvarEncomendas(string bloco, string apto,int tipo,string rastreio,DateTime recebimento,DateTime retirada)
+        public IActionResult SalvarBuscarEncomendas(string bloco = "", string apto = "",int tipo = 0,string rastreio = "",DateTime recebimento = default(DateTime), DateTime retirada = default(DateTime),string botao = "")
         {
+            if(botao == "Salvar")
+            {
+                if (bloco == null || apto == null || rastreio == null)
+                {
+                    return RedirectToAction("administracao", new { msgenc = "Preencha todos os campos!" });
+                }
+                if (recebimento == default(DateTime))
+                {
+                    recebimento = DateTime.Now;
+                }
 
+                var usuario = HomeModel.DadosUsuario("USU_COD", iduser());
 
+                var retorno = HomeModel.SalvarEncomenda(bloco, apto, tipo, rastreio, recebimento, retirada, usuario);
 
-            return RedirectToAction("administracao");
+                return RedirectToAction("administracao", new { msgenc = retorno });
+            }
+
+            if (botao == "Buscar")
+            {
+                var buscar = HomeModel.BuscarEncomendas(rastreio);
+                return RedirectToAction("administracao", new { bloco = (buscar[0].ENC_BLOCO).ToString(), apto = (buscar[0].ENC_APTO).ToString(), tipo = buscar[0].ENC_TIPO, rastreio = rastreio, recebimento = buscar[0].ENC_DATA, retirada = buscar[0].ENC_DATARET });
+            }
+
+            return null;
         }
+
+        public IActionResult SalvarEnvPac(string nomepac, string bloco = "", string apto = "", DateTime recebimento = default(DateTime))
+        {
+            if(nomepac == null || bloco == null || apto == null)
+            {
+                return RedirectToAction("administracao", new { msgenv = "Preencha os campos corretamente!" });
+            }
+            var usuario = HomeModel.DadosUsuario("USU_COD", iduser());
+            var retorno = HomeModel.SalvarEnvPac(bloco, apto, nomepac, recebimento, usuario);
+
+
+           
+            return RedirectToAction("administracao", new { msgenv = retorno });
+        }
+
+        public IActionResult SalvarAviso(string aviso, DateTime dataexpira)
+        {
+            if(aviso == null || dataexpira == null)
+            {
+                return RedirectToAction("administracao", new { msgavisos = "Preencha todos campos!" });
+            }
+
+            var retorno = HomeModel.SalvarAvisoGeral(aviso, dataexpira);
+
+            return RedirectToAction("administracao", new { msgavisos = retorno });
+        }
+
+
 
         public IActionResult configuracao()
         {
@@ -162,6 +244,12 @@ namespace DGG_Condominio.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModelo { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public  string iduser() // Busca o login do usuário, nesse caso o email, visto que pessoa se loga pelo email
+        {
+            var id = User.Identity;
+            return id.Name.ToString();
         }
 
 

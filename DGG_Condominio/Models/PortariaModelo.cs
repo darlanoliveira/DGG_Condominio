@@ -12,9 +12,10 @@ namespace DGG_Condominio.Models
         public int PORT_COD { get; internal set; }
         public int PORT_USU_COD { get; internal set; }
         public int PORT_USU_CAD { get; internal set; }
-        public string POR_NOME { get; internal set; }
-        public string POR_BLOCO { get; internal set; }
+        public string PORT_NOME { get; internal set; }
+        public string PORT_BLOCO { get; internal set; }
         public string PORT_APTO { get; internal set; }
-        public DateTime POR_DATA { get; internal set; }
+        public DateTime PORT_DATA { get; internal set; }
+        public int PORT_STATUS { get; internal set; }
     }
 }
