@@ -82,9 +82,7 @@ namespace DGG_Condominio.Controllers
            
            
         }
-
-
-
+        
         public IActionResult administracao(string msgenc = "", string bloco = "", string apto = "", int tipo = 0, string rastreio = "", DateTime recebimento = default(DateTime), DateTime retirada = default(DateTime),string msgenv = "",string msgavisos = "")
         {
 
@@ -123,7 +121,6 @@ namespace DGG_Condominio.Controllers
                    
             return View();
         }
-
         public IActionResult SalvarBuscarEncomendas(string bloco = "", string apto = "",int tipo = 0,string rastreio = "",DateTime recebimento = default(DateTime), DateTime retirada = default(DateTime),string botao = "")
         {
             if(botao == "Salvar")
@@ -206,10 +203,20 @@ namespace DGG_Condominio.Controllers
             return View();
         }
 
+        public IActionResult SalvaAluguelAreaComum()
+        {
+            ViewBag.buscarAreas = HomeModel.BuscaAreasComuns();
+
+            return null;
+        }
+
         public IActionResult condominos()
         {
             var usuario = new List<UsuariosModelos>();
             usuario = HomeModel.AtualUsuario();
+
+            ViewBag.buscarAreas = HomeModel.BuscaAreasComuns();
+
 
             foreach (var item in usuario)
             {

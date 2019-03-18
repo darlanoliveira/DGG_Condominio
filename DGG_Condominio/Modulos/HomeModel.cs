@@ -224,5 +224,16 @@ namespace DGG_Condominio.Modulos
             }
         }
 
+        public static List<AreasComunsModelo> BuscaAreasComuns() 
+        {
+            using (var repo = new CondominioContext())
+            {
+               IList< AreasComunsModelo> areasComuns = repo.areas_comuns.Where(a => a.ACO_ATIVO == 1).ToList();
+                return areasComuns.ToList();
+            }
+
+            
+        }
+
     }
 }

@@ -17,6 +17,7 @@ namespace DGG_Condominio.Modulos
         public DbSet<MoradoresModelo> moradores { get; set; }
         public DbSet<PortariaModelo> portaria { get; set; }
         public DbSet<ReservasModelo> reservas { get; set; }
+        public DbSet<AreasComunsModelo> areas_comuns { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

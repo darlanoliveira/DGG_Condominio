@@ -127,99 +127,104 @@
             </div>
 
             <hr>
-            <form accept-charset="UTF-8" method="post" action="">
+            <form accept-charset="UTF-8" method="post" action="/Home/SalvaAluguelAreaComum">
                 <div class="row" style="margin-left: 1.2%">
                     <div class="form-group col-md-3">
                         <label for="area">Área desejada</label>
-                        <input type="list" name="areas" id="area" class="form-control" placeholder="Selecione a área desejada">
-                        <datalist id="areas"></datalist>
+                        <datalist id="areasComuns" class="form-control" placeholder="Selecione a Área Desejada">
+                            @foreach (var item in ViewBag.buscarAreas)
+                            {
+                                <option value=@item.ACO_TIPO />
+                            }
+                            </datalist>
+
                     </div>
 
-                    <div class="form-group col-md-2">
-                        <label for="dataaluga">Data desejada</label>
-                        <input type="text" name="dataaluga" id="dataaluga" class="data form-control" placeholder="00/00/0000">
-                    </div>
+                        <div class="form-group col-md-2">
+                            <label for="dataaluga">Data desejada</label>
+                            <input type="text" name="dataaluga" id="dataaluga" class="data form-control" placeholder="00/00/0000">
+                        </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="convidados">Lista de convidados</label>
-                        <input type="file" name="convidados" id="convidados" class="form-control-file btn btn-sm btn-outline-secondary">
-                    </div>
+                        <div class="form-group col-md-4">
+                            <label for="convidados">Lista de convidados</label>
+                            <input type="file" name="convidados" id="convidados" class="form-control-file btn btn-sm btn-outline-secondary">
+                        </div>
 
-                    <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.6%">
-                    <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.6%">
+                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.6%">
+                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.6%">
                 </div>
-            </form>
+                </form>
 
-            <br>
-            <div class=" text text-info">
-                <h4>Quadro de avisos</h4>
+                <br>
+                <div class=" text text-info">
+                    <h4>Quadro de avisos</h4>
+                </div>
+
+                <div class="text text-info" style="margin-left: 51%; margin-top: -3.3%">
+                    <h4>Envie sua sugestão, dúvida ou crítica</h4>
+                </div>
+
+                <hr>
+                <form accept-charset="UTF-8" method="get" action="">
+                    <div class="form-group col-md-6">
+                        <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center; width: 30%" nowrap="nowrap">Data</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Aviso</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td id="data" name="data" nowrap="nowrap">00/00/0000</td>
+                                        <td id="aviso" name="aviso" nowrap="nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <form accept-charset="UTF-8" method="post" action="SalvarMsg">
+                    <div class="form-group col-md-6" style="margin-left: 51%; margin-top: -13.2%">
+                        <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Digite o título da mensagem aqui">
+                        <textarea name="mensagem" id="mensagem" class="form-control" rows="3" style="margin-top: 1.5%" placeholder="Digite suas sugestões, dúvidas ou críticas aqui"></textarea><br><br>
+                        <input type="submit" name="enviar" id="enviar" class="btn btn-lg btn-info" style="margin-top: -10%; margin-left: 61.2%" value="Enviar">
+                        <input type="reset" name="cancelar" id="cancelar" class="btn btn-lg btn-danger" style="margin-top: -10%; margin-left: 1%" value="Cancelar">
+                    </div>
+                </form>
+
+                <div class="text text-info">
+                    <h4>Resposta da sua sugestão, dúvida ou crítica</h4>
+                </div>
+
+                <hr>
+                <form accept-charset="UTF-8" method="get" action="">
+                    <div class="form-group col-md-12">
+                        <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center; width: 10%" nowrap="nowrap">Data</th>
+                                        <th scope="col" style="text-align: center; width: 30%" nowrap="nowrap">Título da sua mensagem</th>
+                                        <th scope="col" style="text-align: center" nowrap="nowrap">Resposta da administração</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td id="data" name="data" nowrap="nowrap">00/00/0000</td>
+                                        <td id="titulo" name="titulo" nowrap="nowrap"></td>
+                                        <td id="resposta" name="resposta" nowrap="nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="text text-info" style="margin-left: 51%; margin-top: -3.3%">
-                <h4>Envie sua sugestão, dúvida ou crítica</h4>
-            </div>
-
-            <hr>
-            <form accept-charset="UTF-8" method="get" action="">
-                <div class="form-group col-md-6">
-                    <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="text-align: center; width: 30%" nowrap="nowrap">Data</th>
-                                    <th scope="col" style="text-align: center" nowrap="nowrap">Aviso</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td id="data" name="data" nowrap="nowrap">00/00/0000</td>
-                                    <td id="aviso" name="aviso" nowrap="nowrap"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </form>
-
-            <form accept-charset="UTF-8" method="post" action="SalvarMsg">
-                <div class="form-group col-md-6" style="margin-left: 51%; margin-top: -13.2%">
-                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Digite o título da mensagem aqui">
-                    <textarea name="mensagem" id="mensagem" class="form-control" rows="3" style="margin-top: 1.5%" placeholder="Digite suas sugestões, dúvidas ou críticas aqui"></textarea><br><br>
-                    <input type="submit" name="enviar" id="enviar" class="btn btn-lg btn-info" style="margin-top: -10%; margin-left: 61.2%" value="Enviar">
-                    <input type="reset" name="cancelar" id="cancelar" class="btn btn-lg btn-danger" style="margin-top: -10%; margin-left: 1%" value="Cancelar">
-                </div>
-            </form>
-
-            <div class="text text-info">
-                <h4>Resposta da sua sugestão, dúvida ou crítica</h4>
-            </div>
-
-            <hr>
-            <form accept-charset="UTF-8" method="get" action="">
-                <div class="form-group col-md-12">
-                    <div class="panel panel-default" style="overflow-x: scroll; overflow-y: scroll; word-break: keep-all">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="text-align: center; width: 10%" nowrap="nowrap">Data</th>
-                                    <th scope="col" style="text-align: center; width: 30%" nowrap="nowrap">Título da sua mensagem</th>
-                                    <th scope="col" style="text-align: center" nowrap="nowrap">Resposta da administração</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td id="data" name="data" nowrap="nowrap">00/00/0000</td>
-                                    <td id="titulo" name="titulo" nowrap="nowrap"></td>
-                                    <td id="resposta" name="resposta" nowrap="nowrap"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </form>
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>
