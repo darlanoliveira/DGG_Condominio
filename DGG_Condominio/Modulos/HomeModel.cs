@@ -107,6 +107,40 @@ namespace DGG_Condominio.Modulos
                 return null;
         }
 
+        public static string SalvarReservas(int usuarioCodigo, int usuarioCadastro, int tipo, DateTime data, int status, int areaComumCod, byte[] lista)
+        {
+            
+            ReservasModelo mdl = new ReservasModelo();
+            mdl.RES_USU_COD = usuarioCodigo;
+            mdl.RES_USU_CAD = usuarioCadastro;
+            mdl.RES_TIPO = tipo;
+            mdl.RES_DATA = data;
+            mdl.RES_STATUS = status;
+            mdl.RES_ACO_COD = areaComumCod;
+            mdl.RES_LISTA = lista;
+            mdl.RES_APTO = "";
+            mdl.RES_BLOCO = "";
+
+            using (var repo = new CondominioContext()) 
+            {
+                repo.reservas.Add(mdl); // Cria linha no banco tabela Reservas
+                repo.SaveChanges();
+            }
+
+
+            return null;
+        }
+
+        //TODO Criar metodo que busca se no dia pedido para reserva já existe um item no banco
+
+        private void MsgBox(string mensagem) //TODO testando para criar MessageBox 
+        {
+            string msg = "<script language=\"javascript\">";
+            msg += "alert('" + mensagem + "');";
+            msg += "</script>";
+            // Response.Write(msg);
+        }
+
         public static string SalvarEncomenda(string bloco, string apto, int tipo, string rastreio, DateTime recebimento, DateTime retirada,int usuario)
             {
 

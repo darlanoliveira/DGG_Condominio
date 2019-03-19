@@ -26,7 +26,6 @@ namespace DGG_Condominio.Controllers
 
             return View();
         }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -40,7 +39,7 @@ namespace DGG_Condominio.Controllers
             vm.Email = email;
             vm.Senha = senha;
             var usuario = new List<UsuariosModelos>();
-
+            
 
             usuario = HomeModel.BuscaUsuario(vm.Email, vm.Senha);
             if (usuario != null)
@@ -203,13 +202,6 @@ namespace DGG_Condominio.Controllers
             return View();
         }
 
-        public IActionResult SalvaAluguelAreaComum()
-        {
-            ViewBag.buscarAreas = HomeModel.BuscaAreasComuns();
-
-            return null;
-        }
-
         public IActionResult condominos()
         {
             var usuario = new List<UsuariosModelos>();
@@ -241,6 +233,31 @@ namespace DGG_Condominio.Controllers
             return RedirectToAction("condominos");
         }
 
+        public IActionResult SalvarRsv(int areaComumCod, DateTime dataDesejada, byte[] lista, string botao)
+        {
+            if (botao == "Salvar")
+            {
+                var usuarios = HomeModel.AtualUsuario();
+                var usuarioCodigo = 0;
+                var usuarioCadastro = 0;
+                foreach (var usuario in usuarios)
+                {
+                    usuarioCodigo = usuario.USU_COD;
+                    usuarioCadastro = usuario.USU_COD;
+                }
+
+                HomeModel.SalvarReservas(usuarioCodigo, usuarioCadastro, 1, dataDesejada, 1, areaComumCod, lista);
+
+                
+                return RedirectToAction("Condominos");
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
         public IActionResult moradores(string nome)
         {
             

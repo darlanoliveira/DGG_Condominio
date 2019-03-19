@@ -127,31 +127,33 @@
             </div>
 
             <hr>
-            <form accept-charset="UTF-8" method="post" action="/Home/SalvaAluguelAreaComum">
+            <form accept-charset="UTF-8" method="post" action="SalvarRsv">
                 <div class="row" style="margin-left: 1.2%">
                     <div class="form-group col-md-3">
                         <label for="area">Área desejada</label>
-                        <datalist id="areasComuns" class="form-control" placeholder="Selecione a Área Desejada">
+                        <select name="areaComumCod" id="areaComumCod" class="form-control" placeholder="Selecione a Área Desejada">
                             @foreach (var item in ViewBag.buscarAreas)
                             {
-                                <option value=@item.ACO_TIPO />
+                                <option value="@item.ACO_COD"> @item.ACO_TIPO </option>
                             }
-                            </datalist>
+                        </select>
 
                     </div>
 
-                        <div class="form-group col-md-2">
-                            <label for="dataaluga">Data desejada</label>
-                            <input type="text" name="dataaluga" id="dataaluga" class="data form-control" placeholder="00/00/0000">
-                        </div>
+                    <div class="form-group col-md-2">
+                        <label for="dataaluga">Data desejada</label>
+                        <input type="text" name="dataDesejada" id="dataDesejada" class="data form-control" placeholder="00/00/0000">
+                    </div>
+                    <script>
+                    
+                    </script>
+                    <div class="form-group col-md-4">
+                        <label for="convidados">Lista de convidados</label>
+                        <input type="file" name="lista" id="lista" class="form-control-file btn btn-sm btn-outline-secondary">
+                    </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="convidados">Lista de convidados</label>
-                            <input type="file" name="convidados" id="convidados" class="form-control-file btn btn-sm btn-outline-secondary">
-                        </div>
-
-                        <input class="btn btn-lg btn-info" type="submit" value="Salvar" style="height: 3%; margin-left: 80.3%; margin-top: -5.6%">
-                        <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" style="height: 3%; margin-left: 1%; margin-top: -5.6%">
+                    <input class="btn btn-lg btn-info" type="submit" value="Salvar" name="botao" style="height: 3%; margin-left: 80.3%; margin-top: -5.6%">
+                    <input class="btn btn-lg btn-danger" type="reset" value="Cancelar" name="botao" style="height: 3%; margin-left: 1%; margin-top: -5.6%">
                 </div>
                 </form>
 

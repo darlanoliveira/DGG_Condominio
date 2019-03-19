@@ -7,15 +7,18 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" PrivateAssets="All" />
     <PackageReference Include="MySql.Data" Version="8.0.15" />
     <PackageReference Include="MySql.Data.Entity" Version="6.10.8" />
     <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.15" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.15" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
   <ItemGroup>

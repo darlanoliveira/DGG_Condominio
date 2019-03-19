@@ -12,11 +12,12 @@ namespace DGG_Condominio.Models
         public int RES_COD { get; internal set; }
         public int RES_USU_COD { get; internal set; }
         public int RES_USU_CAD { get; internal set; }
-        public int RED_TIPO { get; internal set; }
+        public int RES_TIPO { get; internal set; }
         public DateTime RES_DATA { get; internal set; }
         public int RES_STATUS { get; internal set; }
-        public string RES_OBS { get; internal set; }
         public string RES_BLOCO { get; internal set; }
         public string RES_APTO { get; internal set; }
+        public int RES_ACO_COD { get; internal set; }
+        public byte[] RES_LISTA { get; internal set; }
     }
 }
