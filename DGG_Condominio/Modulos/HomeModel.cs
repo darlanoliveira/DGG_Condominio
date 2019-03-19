@@ -117,7 +117,7 @@ namespace DGG_Condominio.Modulos
             mdl.RES_DATA = data;
             mdl.RES_STATUS = status;
             mdl.RES_ACO_COD = areaComumCod;
-            mdl.RES_LISTA = lista;
+            mdl.RES_LISTA = lista;  // Não está inserindo no banco a Lista BLOB
             mdl.RES_APTO = "";
             mdl.RES_BLOCO = "";
 
