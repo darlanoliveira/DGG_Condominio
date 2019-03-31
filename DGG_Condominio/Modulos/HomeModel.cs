@@ -285,5 +285,19 @@ namespace DGG_Condominio.Modulos
             return "Salvo com Sucesso";
         }
 
+        public static List<DocumentosModelo> BuscaDoc()
+        {
+            var repo = new CondominioContext();
+            List<DocumentosModelo> documentos = repo.documentos.ToList();
+            return documentos;
+        }
+
+        public static DocumentosModelo DownloadDocumento(int cod)
+        {
+            var repo = new CondominioContext();
+            DocumentosModelo documento = repo.documentos.Where(d => d.DOC_COD == cod).First();
+            return documento;
+        }
+
     }
 }

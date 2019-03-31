@@ -106,11 +106,16 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td id="baixar" name="baixar" nowrap="nowrap"><input class="btn btn-sm btn-info" style="width: 100%" type="submit" value="Baixar"></td>
-                                        <td id="nomedoc" name="nomedoc" nowrap="nowrap"></td>
-                                        <td id="resconteudo" name="resconteudo" nowrap="nowrap"></td>
-                                    </tr>
+                                    @foreach (var item in ViewBag.Documentos)
+                                    {
+                                        <tr>
+                                            <td id="baixar" name="baixar" nowrap="nowrap"><button onclick="BaixarArquivo(this.value)" class="btn btn-sm btn-info" style="width: 100%" id="campoDoc_Cod" type="submit" value="@item.DOC_COD">Baixar</button></td>
+                                            <td id="nomedoc" name="nomedoc" nowrap="nowrap">@item.DOC_NOME</td>
+                                            <td id="resconteudo" name="resconteudo" nowrap="nowrap">@item.DOC_TEXTO</td>
+                                        </tr>
+                                    }
+
+
                                 </tbody>
                             </table>                        
                         </div>
@@ -120,3 +125,11 @@
         </div>
     </body>
 </html>
+
+<script>
+    function BaixarArquivo(cod)
+    {
+        window.open("DownloadDocumentos?cod="+cod+"");
+
+    }
+    </script>

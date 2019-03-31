@@ -206,9 +206,16 @@ namespace DGG_Condominio.Controllers
         
         public IActionResult documentoscond()
         {
+            ViewBag.Documentos = HomeModel.BuscaDoc();
             return View();
         }
-        
+        public IActionResult DownloadDocumentos(int cod)
+        {
+            
+
+            return File(HomeModel.DownloadDocumento(cod).DOC_ARQUIVO, "application/octet-stream", HomeModel.DownloadDocumento(cod).DOC_NOME.ToString()+".txt");
+        }
+
         public IActionResult principal()
         {
             return View();
