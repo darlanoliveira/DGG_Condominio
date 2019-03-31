@@ -9,6 +9,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using DGG_Condominio.Modulos;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DGG_Condominio.Controllers
 {
@@ -175,7 +177,17 @@ namespace DGG_Condominio.Controllers
             return RedirectToAction("administracao", new { msgavisos = retorno });
         }
 
+        [HttpPost]
+        public IActionResult CadDoc(IFormFile File, string nomedoc,DateTime datacad,string resconteudo)
+        {
+            
+            MemoryStream doc = new MemoryStream();
+            File.CopyTo(doc);
+            
+            HomeModel.SalvarDoc(nomedoc, datacad, doc.ToArray(), resconteudo);
 
+            return RedirectToAction("documentos");
+        }
 
         public IActionResult configuracao()
         {

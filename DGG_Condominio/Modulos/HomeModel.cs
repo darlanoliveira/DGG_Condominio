@@ -269,5 +269,21 @@ namespace DGG_Condominio.Modulos
             
         }
 
+        public static string SalvarDoc(string nomedoc, DateTime datacad, byte[] arquivo, string resconteudo)
+        {
+
+            var repo = new CondominioContext();
+
+            DocumentosModelo doc = new DocumentosModelo();
+            doc.DOC_NOME = nomedoc;
+            doc.DOC_DATA = datacad;
+            doc.DOC_ARQUIVO = arquivo;
+            doc.DOC_TEXTO = resconteudo;
+            repo.documentos.Add(doc);
+            repo.SaveChanges();
+
+            return "Salvo com Sucesso";
+        }
+
     }
 }
